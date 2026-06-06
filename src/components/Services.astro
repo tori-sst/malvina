@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import { servicesData } from '../data/services';
+
+---
+<section id="services" class="w-full pt-16 pb-12 px-4 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    
+    <h2 class="font-vintage text-sand-light text-4xl md:text-5xl text-center mb-16 tracking-wide drop-shadow-md">
+      Что мы предлагаем
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center max-w-4xl mx-auto">
+      {servicesData.map((service) => (
+        <div class="bg-red text-sand-light p-6 rounded-2xl shadow-lg flex flex-col justify-between border border-red/20 min-h-55">
+          <div>
+            <h3 class="font-vintage text-2xl font-base mb-2">{service.title}</h3>
+            <p class="font-sans text-xs text-sand-light/70 mb-2">Включает в себя:</p>
+            
+            <ul class="font-sans text-sm space-y-1 pl-2 border-l border-sand-dark/30 mb-4">
+              {service.includes.map((item) => (
+                <li class="list-none before:content-['•_'] before:text-sand-dark">{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="font-sans text-sm border-t border-sand-light/25 pt-2 flex flex-col gap-0.5">
+            <p class="text-sand-light/80">длительность — {service.duration}</p>
+            <p class="font-medium">Стоимость: {service.price}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

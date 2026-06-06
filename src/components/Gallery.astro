@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import { galleryImages } from '../data/gallery';
+---
+<section 
+  id="gallery" 
+  class="relative w-full min-h-[600px] flex items-center -mt-16 z-20 px-4 md:px-12 pb-20 pt-28 rounded-t-[50px] md:rounded-t-[70px] overflow-hidden"
+>
+  
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <img 
+      src="/img/grass.jpg" 
+      alt="Трава" 
+      class="w-full h-full object-cover scale-105" 
+      loading="lazy" 
+      decoding="async"
+    />
+  </div>
+
+  <div class="absolute inset-0 z-10 bg-green/30 backdrop-blur-md rounded-t-[50px] md:rounded-t-[70px] border-t border-sand-light/30 shadow-[0_-15px_30px_rgba(0,0,0,0.4)]"></div>
+
+  <div class="relative z-20 max-w-6xl mx-auto w-full flex flex-col items-center">
+    
+    <h2 class="font-vintage text-sand-light text-4xl md:text-5xl text-center mb-12 tracking-wide drop-shadow-md">
+      Самые любимые моменты
+    </h2>
+    <div class="relative w-full flex items-center justify-between gap-4">
+      
+      <button 
+        id="prev-btn" 
+        class="w-12 h-12 rounded-full bg-sand-light/60 hover:bg-sand-light text-brown flex items-center justify-center font-bold text-xl shadow-lg transition-all active:scale-90 select-none z-30 cursor-pointer"
+        aria-label="Предыдущий слайд"
+      >
+         <!-- добавь иконку -->
+      </button>
+
+      <div 
+        id="slider-track" 
+        class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pointer-events-auto max-w-[90%] md:max-w-[85%] py-4 no-scrollbar"
+      >
+        {galleryImages.map((image, idx) => (
+          <div class="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] flex-shrink-0 snap-center">
+            <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-xl border border-sand-light/20 group">
+              <img 
+                src={image} 
+                alt={`Любимый момент ${idx + 1}`} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+                decoding="async"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button 
+        id="next-btn" 
+        class="w-12 h-12 rounded-full bg-sand-light/60 hover:bg-sand-light text-brown flex items-center justify-center font-bold text-xl shadow-lg transition-all active:scale-90 select-none z-30 cursor-pointer"
+        aria-label="Следующий слайд"
+      >
+        <!-- добавь иконку -->
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('slider-track');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  if (track && prevBtn && nextBtn) {
+    const getScrollAmount = () => {
+      const firstItem = track.firstElementChild as HTMLElement;
+      return firstItem ? firstItem.offsetWidth + 24 : 300;
+    };
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollLeft += getScrollAmount();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollLeft -= getScrollAmount();
+    });
+  }
+</script>

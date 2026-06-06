@@ -1,7 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Horses from '../components/Horses.astro';
+import Gallery from '../components/Gallery.astro';
+import Services from '../components/Services.astro';
+import Form from '../components/ContactForm.astro';
+import Reviews from '../components/Feedback.astro';
+import Footer from '../components/Footer.astro'
 import '../styles/global.css'
 ---
-<Layout>
 
+<Layout>
+    <Header />
+    <Hero />
+
+    <div class="scroll-animate"><Horses /></div>
+    <div class="scroll-animate"><Gallery /></div>
+
+    <div class="relative w-full bg-stone-900 overflow-hidden scroll-animate">
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="/img/prices.jpg" 
+          alt="Горы и лошади" 
+          class="w-full h-full object-cover brightness-[0.4]" 
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="relative z-10 w-full">
+        <Services />
+        <Form />
+      </div>
+    </div>
+
+    <div class="scroll-animate"><Reviews /></div>
+    <Footer />
 </Layout>
+
+<script is:inline>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, {
+    
+    rootMargin: '0px 0px 200px 0px',
+    threshold: 0.01 
+  });
+
+  document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+</script>

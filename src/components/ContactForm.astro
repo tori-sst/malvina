@@ -1,0 +1,83 @@
+---
+import '../styles/global.css'
+import Button from '../ui/button.astro'
+---
+<section id="booking" class="w-full pt-12 pb-24 px-4">
+  <div class="max-w-md mx-auto text-center flex flex-col items-center">
+    
+    <h2 class="font-vintage text-sand-light text-3xl md:text-4xl mb-12 tracking-wide drop-shadow-sm">
+      Создайте свои воспоминания
+    </h2>
+
+    <form class="w-full bg-green/20 backdrop-blur-md border border-sand-light/20 rounded-2xl p-8 shadow-2xl flex flex-col gap-6 text-left"
+    id="booking-form">
+      
+      <div class="flex flex-col gap-2">
+        <label for="fio" class="font-vintage text-2xl font-base text-sand-light tracking-wide">ФИО</label>
+        <input 
+          type="text" 
+          id="fio" 
+          placeholder="Иванова Мария Ивановна" 
+          class="w-full bg-sand-dark text-brown placeholder-brown/60 px-4 py-2.5 rounded-full font-sans text-base focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all shadow-inner"
+          required
+        />
+      </div>
+      
+      <div class="flex flex-col gap-2">
+        <label for="phone" class="font-vintage text-2xl font-base text-sand-light tracking-wide">Телефон</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          placeholder="+7 (999) 000-00-00" 
+          class="w-full bg-sand-dark text-brown placeholder-brown/60 px-4 py-2.5 rounded-full font-sans text-base focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all shadow-inner"
+          required
+        />
+      </div>
+
+      <Button type="button" id="submit-booking-btn">
+        Записаться
+      </Button>
+    </form>
+  
+
+  <div id="contacts-modal" class="hidden w-full bg-brown/95 backdrop-blur-md border-2 border-orange/40 rounded-2xl p-8 shadow-2xl flex-col gap-6 text-center">
+      
+      <h3 class="font-vintage text-sand-light text-3xl tracking-wide">
+        Наши контакты
+      </h3>
+      
+      <div class="w-12 h-px bg-orange/40 mx-auto"></div>
+      
+      <p class="font-sans text-sand-light/90 text-base leading-relaxed">
+        Свяжитесь с нами напрямую для подтверждения бронирования:
+      </p>
+
+      <a href="tel:+79999999999" class="font-handwritten text-orange text-3xl hover:underline tracking-wide">
+        +7 (999) 999-99-99
+      </a>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mt-2 font-sans font-medium">
+        <a href="https://t.me" target="_blank" class="bg-sky-600/20 hover:bg-sky-600/40 text-sky-400 border border-sky-500/30 px-6 py-2 rounded-full transition-all text-center">
+          Telegram
+        </a>
+        <a href="https://vk.com" target="_blank" class="bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 border border-blue-500/30 px-6 py-2 rounded-full transition-all text-center">
+          ВКонтакте
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<script>
+  const form = document.getElementById('booking-form');
+  const btn = document.getElementById('submit-booking-btn');
+  const modal = document.getElementById('contacts-modal');
+
+  if (form && btn && modal) {
+    btn.addEventListener('click', () => {
+      form.classList.add('hidden'); 
+      modal.classList.remove('hidden');
+    });
+  }
+</script>

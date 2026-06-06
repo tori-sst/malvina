@@ -1,1 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Ponomar&display=swap');
 @import "tailwindcss";
+
+@theme{
+    --color-brown: #381F11;
+    --color-red: #662424;
+    --color-sand-dark: #C6A784;
+    --color-sand-light: #E4D0A5;
+    --color-orange: #B54D27;
+    --color-green: #544A2E;
+    --color-olive: #927C30;
+
+    --font-sans: "Exo 2", sans-serif;         
+    --font-handwritten: "Comforter", cursive;  
+    --font-vintage: "Ponomar", serif; 
+}
+
+@utility h1{
+    @apply text-[120px]
+}
+@utility no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    
+    &::-webkit-scrollbar {
+        display: none; 
+    }
+}
+
+/* Включаем плавный скролл для всего сайта при клике по меню */
+html {
+    scroll-behavior: smooth;
+}
+html, body {
+    background-color: #1c1917; /* Глубокий благородный цвет камня (stone-900 в Tailwind) */
+    color: #e4d0a5; /* Ваш фирменный цвет текста sand-light по умолчанию */
+}
+
+/* Базовое состояние скрытого модуля (блоки появляются быстрее и мягче) */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px); /* Уменьшили высоту, чтобы блок не тормозил */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Ускорили время анимации */
+    will-change: opacity, transform;
+}
+
+/* Состояние, когда пользователь докрутил до модуля */
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
