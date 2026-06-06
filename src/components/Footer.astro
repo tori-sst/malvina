@@ -77,7 +77,7 @@ import { Icon } from 'astro-icon/components'
   </div>
 </footer>
 
-<script is:inline src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=813acc6e-517c-4d01-8b5d-352491d48b2b" type="text/javascript"></script>
+<script is:inline src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=813acc6e-517c-4d01-8b5d-352491d48b2b" async defer type="text/javascript"></script>
 <script>
   function initMap() {
     const mapContainer = document.getElementById('yandex-map');
