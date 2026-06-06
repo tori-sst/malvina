@@ -39,11 +39,14 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Temporarily remove workspace file for build
+        run: rm -f pnpm-workspace.yaml
+
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile --workspace-root
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build with Astro
-        run: pnpm --filter . run build
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
