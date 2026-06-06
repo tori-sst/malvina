@@ -40,10 +40,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile --recursive
+        run: pnpm install --no-frozen-lockfile --workspace-root
 
       - name: Build with Astro
-        run: pnpm run build
+        run: pnpm --filter . run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
