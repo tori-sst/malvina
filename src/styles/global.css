@@ -27,24 +27,21 @@
     }
 }
 
-/* Включаем плавный скролл для всего сайта при клике по меню */
 html {
     scroll-behavior: smooth;
 }
 html, body {
-    background-color: #1c1917; /* Глубокий благородный цвет камня (stone-900 в Tailwind) */
-    color: #e4d0a5; /* Ваш фирменный цвет текста sand-light по умолчанию */
+    background-color: #1c1917; 
+    color: #e4d0a5; 
 }
 
-/* Базовое состояние скрытого модуля (блоки появляются быстрее и мягче) */
 .scroll-animate {
     opacity: 0;
-    transform: translateY(20px); /* Уменьшили высоту, чтобы блок не тормозил */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Ускорили время анимации */
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
     will-change: opacity, transform;
 }
 
-/* Состояние, когда пользователь докрутил до модуля */
 .scroll-animate.visible {
     opacity: 1;
     transform: translateY(0);
